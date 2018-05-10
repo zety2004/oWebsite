@@ -91,9 +91,9 @@
                 callback: function () {
                     initEnv();
                     $("#themeList").theme({themeBase: "themes"}); // themeBase 相对于index页面的主题base路径
-                    var options = {};
+                  /*  var options = {};
                     $.pdialog.open('/jsp/ajaxDone.jsp','welcomeId','欢迎',options)
-                    $.pdialog.closeCurrent()
+                    $.pdialog.close("welcomeId")*/
                 }
             });
         });

@@ -5,6 +5,7 @@ import com.hklk.website.service.FeedBackService;
 import com.hklk.website.service.ItemDetailService;
 import com.hklk.website.service.ItemService;
 import com.hklk.website.service.UserLoginService;
+import com.hklk.website.util.DWZUtil;
 import com.hklk.website.util.StatusCode;
 import com.hklk.website.util.StringUtil;
 import com.hklk.website.util.ToolUtil;
@@ -76,7 +77,7 @@ public class LoginUserController {
             if (result != null) {
                 session.setAttribute("user", result);
 
-                return ToolUtil.buildDWZResultStr(StatusCode.SUCCESS, StatusCode.getStatusMsg(StatusCode.SUCCESS), "closeCurrent", "","_blank");
+                return ToolUtil.buildDWZResultStr(StatusCode.SUCCESS, StatusCode.getStatusMsg(StatusCode.SUCCESS), DWZUtil.CALLBACKTYPE_CLOSE, "","_blank");
             } else {
                 return ToolUtil.buildDWZResultStr(StatusCode.ERROR, StatusCode.getStatusMsg(StatusCode.ERROR), "", "");
             }

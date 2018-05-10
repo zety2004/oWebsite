@@ -3,7 +3,7 @@
 
 <div class="pageContent">
     <form name="opItem" method="post" action="/homePage/addOrUpdateItem" class="pageForm required-validate"
-          onsubmit="return validateCallback(this, navTabAjaxDone);">
+          onsubmit="return validateCallback(this, dialogAjaxDone);">
         <div class="pageFormContent" layoutH="56">
             <p>
                 <label>主 键：</label>

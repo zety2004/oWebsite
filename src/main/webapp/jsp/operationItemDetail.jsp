@@ -13,9 +13,9 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" id="addItemDetail" href="/homePage/queryItemDetailById?method=add&itemId=${itemId}" rel="addItemDetail" target="navTab"><span>添加</span></a></li>
+			<li><a class="add" id="addItemDetail" href="/homePage/queryItemDetailById?method=add&itemId=${itemId}" rel="addItemDetail" target="dialog"[minable="false", mask="true", max="true"] ><span>添加</span></a></li>
 			<li><a class="delete" href="/homePage/deleteItemDetail?id={sid_user}"  target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-			<li><a class="edit" href="/homePage/queryItemDetailById?method=update&id={sid_user}" rel="updataItemDetail" target="navTab"><span>修改</span></a></li>
+			<li><a class="edit" href="/homePage/queryItemDetailById?method=update&id={sid_user}" rel="updataItemDetail" target="dialog" [minable="false", mask="true", max="true"]><span>修改</span></a></li>
 			<li class="line">line</li>
 		</ul>
 	</div>

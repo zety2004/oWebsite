@@ -43,11 +43,11 @@
 <div class="pageContent">
     <div class="panelBar">
         <ul class="toolBar">
-            <li><a class="add" href="/homePage/queryItemById?method=add" rel="addItem" target="navTab"><span>添加</span></a></li>
+            <li><a class="add" href="/homePage/queryItemById?method=add" rel="addItem" target="dialog"><span>添加</span></a></li>
             <li><a class="delete" href="/homePage/deleteItem?id={sid_user}" target="ajaxTodo"
                    title="确定要删除吗?"><span>删除</span></a></li>
             <li><a class="edit" href="/homePage/queryItemById?method=update&id={sid_user}" rel="updataItem"
-                   target="navTab"><span>修改</span></a></li>
+                   target="dialog"><span>修改</span></a></li>
             <li><a class="edit" href="/homePage/queryItemDetail?id={sid_user}" rel="opItemDetail"
                    target="navTab"><span>管理明细</span></a></li>
             <li class="line">line</li>

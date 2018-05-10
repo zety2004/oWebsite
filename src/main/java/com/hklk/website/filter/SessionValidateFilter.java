@@ -41,6 +41,13 @@ public class SessionValidateFilter implements Filter {
             }
             return;
         }
+       /* else {
+            HttpServletResponse response = (HttpServletResponse) res;
+            PrintWriter out = response.getWriter();
+            String json = ToolUtil.buildDWZResultStr(StatusCode.OVER_TIME, StatusCode.getStatusMsg(StatusCode.OVER_TIME), "", "", "", "", "");
+            out.print(json);
+            return;
+        }*/
 
         log.debug("validate authentication finished, the authentication has permission to enter this uri.");
         chain.doFilter(req, res);

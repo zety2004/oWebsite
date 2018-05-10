@@ -104,7 +104,7 @@ public class HomePageController {
             } else {
                 itemService.insertSelective(itemContent);
             }
-            return ToolUtil.buildDWZResultStr(StatusCode.SUCCESS, StatusCode.getStatusMsg(StatusCode.SUCCESS), DWZUtil.CALLBACKTYPE_CLOSE, "ItemList");
+            return ToolUtil.buildDWZResultStr(StatusCode.SUCCESS, StatusCode.getStatusMsg(StatusCode.SUCCESS), DWZUtil.CALLBACKTYPE_CLOSE, "");
         } catch (Exception e) {
             e.printStackTrace();
             return ToolUtil.buildDWZResultStr(StatusCode.ERROR, StatusCode.getStatusMsg(StatusCode.SYS_ERROR), "", "");

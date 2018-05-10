@@ -69,7 +69,7 @@ public class HomePageController {
         if(!"add".equals(request.getParameter("method"))){
             ItemContent itemContent = itemService.selectItemById(StringUtil.paresInt(request.getParameter("id")));
             model.addAttribute("itemContent",itemContent);
-            System.out.println("111");
+            System.out.println("1111111");
         }
         return "/jsp/updateItem";
     }

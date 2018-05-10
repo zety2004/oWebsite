@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hklk.website.dao.inter.ItemContentMapper" >
+  <resultMap id="BaseResultMap" type="com.hklk.website.entity.table.ItemContent" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="item_name" property="itemName" jdbcType="VARCHAR" />
+    <result column="order_lev" property="orderLev" jdbcType="INTEGER" />
+    <result column="is_top" property="isTop" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, item_name, order_lev, is_top
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from hklk_item
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from hklk_item
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hklk.website.entity.table.ItemContent" >
+    insert into hklk_item (id, item_name, order_lev, 
+      is_top)
+    values (#{id,jdbcType=INTEGER}, #{itemName,jdbcType=VARCHAR}, #{orderLev,jdbcType=INTEGER}, 
+      #{isTop,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hklk.website.entity.table.ItemContent" >
+    insert into hklk_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="itemName != null" >
+        item_name,
+      </if>
+      <if test="orderLev != null" >
+        order_lev,
+      </if>
+      <if test="isTop != null" >
+        is_top,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderLev != null" >
+        #{orderLev,jdbcType=INTEGER},
+      </if>
+      <if test="isTop != null" >
+        #{isTop,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hklk.website.entity.table.ItemContent" >
+    update hklk_item
+    <set >
+      <if test="itemName != null" >
+        item_name = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderLev != null" >
+        order_lev = #{orderLev,jdbcType=INTEGER},
+      </if>
+      <if test="isTop != null" >
+        is_top = #{isTop,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hklk.website.entity.table.ItemContent" >
+    update hklk_item
+    set item_name = #{itemName,jdbcType=VARCHAR},
+      order_lev = #{orderLev,jdbcType=INTEGER},
+      is_top = #{isTop,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryItems" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from hklk_item order by order_lev
+  </select>
+
+</mapper>

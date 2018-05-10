@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hklk.website.dao.inter.ItemDetailMapper">
+    <resultMap id="BaseResultMap" type="com.hklk.website.entity.table.ItemDetail">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="item_detail_name" property="itemDetailName" jdbcType="VARCHAR"/>
+        <result column="item_id" property="itemId" jdbcType="INTEGER"/>
+        <result column="order_level" property="orderLevel" jdbcType="INTEGER"/>
+        <result column="pic" property="pic" jdbcType="VARCHAR"/>
+        <result column="source" property="source" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="com.hklk.website.entity.table.ItemDetail" extends="BaseResultMap">
+        <result column="des" property="des" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, item_detail_name, item_id, order_level, pic, source, create_time
+  </sql>
+    <sql id="Blob_Column_List">
+    des
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from hklk_item_detail
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from hklk_item_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.hklk.website.entity.table.ItemDetail">
+    insert into hklk_item_detail (id, item_detail_name, item_id, 
+      order_level, pic, source, 
+      create_time, des)
+    values (#{id,jdbcType=INTEGER}, #{itemDetailName,jdbcType=VARCHAR}, #{itemId,jdbcType=INTEGER}, 
+      #{orderLevel,jdbcType=INTEGER}, #{pic,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{des,jdbcType=LONGVARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.hklk.website.entity.table.ItemDetail">
+        insert into hklk_item_detail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="itemDetailName != null">
+                item_detail_name,
+            </if>
+            <if test="itemId != null">
+                item_id,
+            </if>
+            <if test="orderLevel != null">
+                order_level,
+            </if>
+            <if test="pic != null">
+                pic,
+            </if>
+            <if test="source != null">
+                source,
+            </if>
+            create_time,
+            <if test="des != null">
+                des,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="itemDetailName != null">
+                #{itemDetailName,jdbcType=VARCHAR},
+            </if>
+            <if test="itemId != null">
+                #{itemId,jdbcType=INTEGER},
+            </if>
+            <if test="orderLevel != null">
+                #{orderLevel,jdbcType=INTEGER},
+            </if>
+            <if test="pic != null">
+                #{pic,jdbcType=VARCHAR},
+            </if>
+            <if test="source != null">
+                #{source,jdbcType=VARCHAR},
+            </if>
+            SYSDATE(),
+            <if test="des != null">
+                #{des,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hklk.website.entity.table.ItemDetail">
+        update hklk_item_detail
+        <set>
+            <if test="itemDetailName != null">
+                item_detail_name = #{itemDetailName,jdbcType=VARCHAR},
+            </if>
+            <if test="itemId != null">
+                item_id = #{itemId,jdbcType=INTEGER},
+            </if>
+            <if test="orderLevel != null">
+                order_level = #{orderLevel,jdbcType=INTEGER},
+            </if>
+            <if test="pic != null">
+                pic = #{pic,jdbcType=VARCHAR},
+            </if>
+            <if test="source != null">
+                source = #{source,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="des != null">
+                des = #{des,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hklk.website.entity.table.ItemDetail">
+    update hklk_item_detail
+    set item_detail_name = #{itemDetailName,jdbcType=VARCHAR},
+      item_id = #{itemId,jdbcType=INTEGER},
+      order_level = #{orderLevel,jdbcType=INTEGER},
+      pic = #{pic,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      des = #{des,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="com.hklk.website.entity.table.ItemDetail">
+    update hklk_item_detail
+    set item_detail_name = #{itemDetailName,jdbcType=VARCHAR},
+      item_id = #{itemId,jdbcType=INTEGER},
+      order_level = #{orderLevel,jdbcType=INTEGER},
+      pic = #{pic,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <select id="queryItemDetails" resultMap="BaseResultMap"
+            parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from hklk_item_detail
+        where item_id = #{itemId,jdbcType=INTEGER}
+    </select>
+
+</mapper>

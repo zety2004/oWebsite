@@ -7,12 +7,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>好课乐课公司门户后台管理</title>
 
-    <link href="/themes/default/style.css" rel="stylesheet" type="text/css" media="screen"/>
-    <link href="/themes/css/core.css" rel="stylesheet" type="text/css" media="screen"/>
-    <link href="/themes/css/print.css" rel="stylesheet" type="text/css" media="print"/>
+    <link href="/login/themes/default/style.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="/login/themes/css/core.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="/login/themes/css/print.css" rel="stylesheet" type="text/css" media="print"/>
     <link href="/uploadify/css/uploadify.css" rel="stylesheet" type="text/css" media="screen"/>
     <!--[if IE]>
-    <link href="/themes/css/ieHack.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="/login/themes/css/ieHack.css" rel="stylesheet" type="text/css" media="screen"/>
     <![endif]-->
 
     <!--[if lt IE 9]>

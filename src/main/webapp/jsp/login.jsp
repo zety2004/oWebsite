@@ -5,14 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>风险管理平台</title>
-<link href="/themes/css/login.css" rel="stylesheet" type="text/css" />
+<link href="/login/themes/css/login.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
 	<div id="login">
 		<div id="login_header">
 			<h1 class="login_logo">
-				<a href="http://demo.dwzjs.com"><img src="/themes/default/images/login_logo.gif" /></a>
+				<a href="http://demo.dwzjs.com"><img src="/login/themes/default/images/login_logo.gif" /></a>
 			</h1>
 			<div class="login_headerContent">
 				<div class="navList">
@@ -21,7 +21,7 @@
 					</ul>
 				</div>
 				<h2>后台管理系统登录</h2>
-				<%--<h2 class="login_title"><img src="/themes/default/images/login_title.png" /></h2>--%>
+				<%--<h2 class="login_title"><img src="/login/themes/default/images/login_title.png" /></h2>--%>
 			</div>
 		</div>
 		<div id="login_content">
@@ -47,7 +47,7 @@
 					</div>
 				</form>
 			</div>
-			<div class="login_banner"><img src="/themes/default/images/login_banner.jpg" /></div>
+			<div class="login_banner"><img src="/login/themes/default/images/login_banner.jpg" /></div>
 			<div class="login_main">
 				<ul class="helpList">
 				<!--	<li><a href="#">下载驱动程序</a></li>-->

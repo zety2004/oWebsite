@@ -37,7 +37,7 @@ public class LoginUserController {
         return "/jsp/index";
     }
 
-    protected Model ajaxDone(Model result,String statusCode, String message, String forwardUrl){
+    protected Model ajaxDone(Model result,Integer statusCode, String message, String forwardUrl){
         result.addAttribute("statusCode", statusCode);
         result.addAttribute("message", message);
         result.addAttribute("forwardUrl", forwardUrl);

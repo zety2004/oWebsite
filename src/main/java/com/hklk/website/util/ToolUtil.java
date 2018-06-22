@@ -24,12 +24,19 @@ public final class ToolUtil {
         return (ArrayList<Entry<String, Integer>>) entries;
     }
     
-    public static String buildResultStr(String statusCode,String statusMessage,Object obj) {
+    public static String buildResultStr(Integer statusCode,String statusMessage,Object obj) {
     		Map<String, Object> map=new HashMap<String,Object>();
     		map.put("resultCode", statusCode);
     		map.put("resultMsg", statusMessage);
     		map.put("resultData", obj);
     		return JsonUtil.toJson(map,dateFormate);
+    }
+
+    public static String buildResultStr(Integer statusCode,String statusMessage) {
+        Map<String, Object> map=new HashMap<String,Object>();
+        map.put("resultCode", statusCode);
+        map.put("resultMsg", statusMessage);
+        return JsonUtil.toJson(map);
     }
 
     public static String buildXhEditorStr(String statusCode,String url){
@@ -39,7 +46,7 @@ public final class ToolUtil {
         return JsonUtil.toJson(map,dateFormate);
     }
 
-    public static String buildDWZResultStr(String statusCode,String statusMessage,String callbackType,String navTabId,String rel,String forwardUrl,String confirmMsg) {
+    public static String buildDWZResultStr(Integer statusCode,String statusMessage,String callbackType,String navTabId,String rel,String forwardUrl,String confirmMsg) {
         Map<String, Object> map=new HashMap<String,Object>();
         map.put("statusCode", statusCode);
         map.put("message", statusMessage);
@@ -51,7 +58,7 @@ public final class ToolUtil {
         return JsonUtil.toJson(map,dateFormate);
     }
 
-    public static String buildDWZResultStr(String statusCode,String statusMessage,String callbackType,String navTabId) {
+    public static String buildDWZResultStr(Integer statusCode,String statusMessage,String callbackType,String navTabId) {
         Map<String, Object> map=new HashMap<String,Object>();
         map.put("statusCode", statusCode);
         map.put("message", statusMessage);
@@ -60,7 +67,7 @@ public final class ToolUtil {
         return JsonUtil.toJson(map,dateFormate);
     }
 
-    public static String buildDWZResultStr(String statusCode,String statusMessage,String callbackType,String navTabId,String rel) {
+    public static String buildDWZResultStr(Integer statusCode,String statusMessage,String callbackType,String navTabId,String rel) {
         Map<String, Object> map=new HashMap<String,Object>();
         map.put("statusCode", statusCode);
         map.put("message", statusMessage);

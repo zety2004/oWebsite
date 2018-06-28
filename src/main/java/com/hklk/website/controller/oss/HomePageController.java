@@ -1,8 +1,10 @@
-package com.hklk.website.controller;
+package com.hklk.website.controller.oss;
 
+import com.hklk.website.controller.BaseController;
 import com.hklk.website.entity.table.ItemContent;
 import com.hklk.website.entity.table.ItemDetail;
 import com.hklk.website.entity.table.UserFeedBack;
+import com.hklk.website.filter.repo.LoginRepository;
 import com.hklk.website.service.FeedBackService;
 import com.hklk.website.service.ItemDetailService;
 import com.hklk.website.service.ItemService;
@@ -20,9 +22,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+@LoginRepository
 @RequestMapping("/homePage")
 @Controller
-public class HomePageController {
+public class HomePageController extends BaseController {
     @Autowired
     UserLoginService userLoginService;
     @Autowired
@@ -66,9 +69,9 @@ public class HomePageController {
     public String queryItemById(HttpServletRequest request,
                                 HttpServletResponse response, HttpSession session, Model model) {
 
-        if(!"add".equals(request.getParameter("method"))){
+        if (!"add".equals(request.getParameter("method"))) {
             ItemContent itemContent = itemService.selectItemById(StringUtil.paresInt(request.getParameter("id")));
-            model.addAttribute("itemContent",itemContent);
+            model.addAttribute("itemContent", itemContent);
         }
         return "/jsp/updateItem";
     }

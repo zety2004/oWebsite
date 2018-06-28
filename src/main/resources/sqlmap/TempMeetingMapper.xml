@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hklk.website.dao.inter.TempMeetingMapper">
+    <resultMap id="BaseResultMap" type="com.hklk.website.entity.table.TempMeeting">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="school_name" property="schoolName" jdbcType="VARCHAR"/>
+        <result column="principal_name" property="principalName" jdbcType="VARCHAR"/>
+        <result column="principal_phone" property="principalPhone" jdbcType="VARCHAR"/>
+        <result column="choose_type" property="chooseType" jdbcType="VARCHAR"/>
+        <result column="unique_num" property="uniqueNum" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, school_name, principal_name, principal_phone, choose_type
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from hklk_temp_meeting
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from hklk_temp_meeting
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.hklk.website.entity.table.TempMeeting">
+    insert into hklk_temp_meeting (id, school_name, principal_name, 
+      principal_phone, choose_type,unique_num)
+    values (#{id,jdbcType=INTEGER}, #{schoolName,jdbcType=VARCHAR}, #{principalName,jdbcType=VARCHAR}, 
+      #{principalPhone,jdbcType=VARCHAR}, #{chooseType,jdbcType=VARCHAR}, #{uniqueNum,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.hklk.website.entity.table.TempMeeting">
+        insert into hklk_temp_meeting
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="schoolName != null">
+                school_name,
+            </if>
+            <if test="principalName != null">
+                principal_name,
+            </if>
+            <if test="principalPhone != null">
+                principal_phone,
+            </if>
+            <if test="chooseType != null">
+                choose_type,
+            </if>
+            <if test="uniqueNum != null">
+                unique_num,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="schoolName != null">
+                #{schoolName,jdbcType=VARCHAR},
+            </if>
+            <if test="principalName != null">
+                #{principalName,jdbcType=VARCHAR},
+            </if>
+            <if test="principalPhone != null">
+                #{principalPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="chooseType != null">
+                #{chooseType,jdbcType=VARCHAR},
+            </if>
+            <if test="uniqueNum != null">
+                #{uniqueNum,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="selectMeetingByUniqueNum" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from hklk_temp_meeting
+        where unique_num = #{uniqueNum,jdbcType=VARCHAR}
+    </select>
+</mapper>

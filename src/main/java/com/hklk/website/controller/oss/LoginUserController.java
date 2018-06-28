@@ -1,5 +1,6 @@
-package com.hklk.website.controller;
+package com.hklk.website.controller.oss;
 
+import com.hklk.website.controller.BaseController;
 import com.hklk.website.entity.table.OperatingUser;
 import com.hklk.website.service.FeedBackService;
 import com.hklk.website.service.ItemDetailService;
@@ -21,7 +22,7 @@ import javax.servlet.http.HttpSession;
 
 @RequestMapping("/login")
 @Controller
-public class LoginUserController {
+public class LoginUserController extends BaseController {
     @Autowired
     UserLoginService userLoginService;
     @Autowired
@@ -37,7 +38,7 @@ public class LoginUserController {
         return "/jsp/index";
     }
 
-    protected Model ajaxDone(Model result,Integer statusCode, String message, String forwardUrl){
+    protected Model ajaxDone(Model result, Integer statusCode, String message, String forwardUrl) {
         result.addAttribute("statusCode", statusCode);
         result.addAttribute("message", message);
         result.addAttribute("forwardUrl", forwardUrl);
@@ -46,17 +47,17 @@ public class LoginUserController {
 
     @RequestMapping("/loginUser")
     public String loginUser(HttpServletRequest request,
-                     HttpServletResponse response, HttpSession session,Model model) {
+                            HttpServletResponse response, HttpSession session, Model model) {
         try {
             String name = request.getParameter("username");
             String password = request.getParameter("password");
             OperatingUser result = userLoginService.userLogin(name, password);
             if (result != null) {
                 session.setAttribute("user", result);
-                ajaxDone(model,StatusCode.SUCCESS,StatusCode.getStatusMsg(StatusCode.SUCCESS),"index.jsp");
+                ajaxDone(model, StatusCode.SUCCESS, StatusCode.getStatusMsg(StatusCode.SUCCESS), "index.jsp");
                 return "/jsp/index";
             } else {
-                ajaxDone(model,StatusCode.ERROR,"用户名或密码不正确","login.jsp");
+                ajaxDone(model, StatusCode.ERROR, "用户名或密码不正确", "login.jsp");
                 return "/jsp/login";
             }
         } catch (Exception e) {
@@ -68,8 +69,9 @@ public class LoginUserController {
 
 
     @RequestMapping("/loginUserAjax")
-    public @ResponseBody String loginUser(HttpServletRequest request,
-                            HttpServletResponse response, HttpSession session) {
+    public @ResponseBody
+    String loginUser(HttpServletRequest request,
+                     HttpServletResponse response, HttpSession session) {
         try {
             String name = request.getParameter("username");
             String password = request.getParameter("password");
@@ -77,7 +79,7 @@ public class LoginUserController {
             if (result != null) {
                 session.setAttribute("user", result);
 
-                return ToolUtil.buildDWZResultStr(StatusCode.SUCCESS, StatusCode.getStatusMsg(StatusCode.SUCCESS), DWZUtil.CALLBACKTYPE_CLOSE, "","_blank");
+                return ToolUtil.buildDWZResultStr(StatusCode.SUCCESS, StatusCode.getStatusMsg(StatusCode.SUCCESS), DWZUtil.CALLBACKTYPE_CLOSE, "", "_blank");
             } else {
                 return ToolUtil.buildDWZResultStr(StatusCode.ERROR, StatusCode.getStatusMsg(StatusCode.ERROR), "", "");
             }
@@ -90,19 +92,20 @@ public class LoginUserController {
 
     @RequestMapping("/loginOut")
     public String loginOut(HttpServletRequest request,
-                            HttpServletResponse response, HttpSession session,Model model) {
+                           HttpServletResponse response, HttpSession session, Model model) {
 
-                session.setAttribute("user", null);
-                ajaxDone(model,StatusCode.SUCCESS,StatusCode.getStatusMsg(StatusCode.SUCCESS),"index.jsp");
-                return "/jsp/login";
+        session.setAttribute("user", null);
+        ajaxDone(model, StatusCode.SUCCESS, StatusCode.getStatusMsg(StatusCode.SUCCESS), "index.jsp");
+        return "/jsp/login";
     }
 
     @RequestMapping("/deleteFeedBackById")
-    public @ResponseBody String deleteFeedBackById(HttpServletRequest request,
-                                                   HttpServletResponse response, HttpSession session) {
+    public @ResponseBody
+    String deleteFeedBackById(HttpServletRequest request,
+                              HttpServletResponse response, HttpSession session) {
         try {
-            int result  = feedBackService.deleteByPrimaryKey(StringUtil.paresInt(request.getParameter("id")));
-            return ToolUtil.buildDWZResultStr(StatusCode.SUCCESS, StatusCode.getStatusMsg(StatusCode.SUCCESS),"","userFeed");
+            int result = feedBackService.deleteByPrimaryKey(StringUtil.paresInt(request.getParameter("id")));
+            return ToolUtil.buildDWZResultStr(StatusCode.SUCCESS, StatusCode.getStatusMsg(StatusCode.SUCCESS), "", "userFeed");
 
         } catch (Exception e) {
             e.printStackTrace();

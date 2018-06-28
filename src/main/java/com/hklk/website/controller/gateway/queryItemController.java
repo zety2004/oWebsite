@@ -1,11 +1,11 @@
-package com.hklk.website.controller;
+package com.hklk.website.controller.gateway;
 
+import com.hklk.website.controller.BaseController;
 import com.hklk.website.entity.table.ItemContent;
 import com.hklk.website.entity.table.ItemDetail;
 import com.hklk.website.entity.vo.ItemVo;
 import com.hklk.website.service.ItemDetailService;
 import com.hklk.website.service.ItemService;
-import com.hklk.website.util.JsonUtil;
 import com.hklk.website.util.StatusCode;
 import com.hklk.website.util.StringUtil;
 import com.hklk.website.util.ToolUtil;
@@ -25,7 +25,7 @@ import java.util.Map;
 
 @RequestMapping("/item")
 @Controller
-public class queryItemController {
+public class queryItemController extends BaseController {
     @Autowired
     ItemService itemService;
     @Autowired
@@ -37,11 +37,11 @@ public class queryItemController {
                      HttpServletResponse response, HttpSession session) {
         try {
             List<ItemVo> result = new ArrayList<>();
-            Map<Integer,ItemVo> result2= new HashMap<>();
+            Map<Integer, ItemVo> result2 = new HashMap<>();
             List<ItemContent> itemContents = itemService.queryItemList();
-            for(ItemContent itemContent : itemContents){
+            for (ItemContent itemContent : itemContents) {
                 List<ItemDetail> itemDetails = itemDetailService.queryItemDetailList(itemContent.getId());
-                result2.put(itemContent.getId(),new ItemVo(itemContent,itemDetails));
+                result2.put(itemContent.getId(), new ItemVo(itemContent, itemDetails));
                 //result.add(new ItemVo(itemContent,itemDetails));
             }
             response.setHeader("Access-Control-Allow-Origin", "*");
@@ -56,7 +56,7 @@ public class queryItemController {
     @RequestMapping(value = "/queryItemDetailByItemId")
     public @ResponseBody
     String queryItemDetailByItemId(@RequestBody String paramters, HttpServletRequest request,
-                     HttpServletResponse response, HttpSession session) {
+                                   HttpServletResponse response, HttpSession session) {
         try {
             List<ItemDetail> itemDetails = itemDetailService.queryItemDetailList(StringUtil.paresInt(request.getParameter("itemId")));
             response.setHeader("Access-Control-Allow-Origin", "*");
@@ -71,7 +71,7 @@ public class queryItemController {
     @RequestMapping(value = "/queryItemDetailById")
     public @ResponseBody
     String queryItemDetailById(@RequestBody String paramters, HttpServletRequest request,
-                                   HttpServletResponse response, HttpSession session) {
+                               HttpServletResponse response, HttpSession session) {
         try {
             ItemDetail itemDetail = itemDetailService.selectItemDetailById(StringUtil.paresInt(request.getParameter("id")));
             response.setHeader("Access-Control-Allow-Origin", "*");

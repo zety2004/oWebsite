@@ -1,31 +1,22 @@
-package com.hklk.website.controller;
+package com.hklk.website.controller.gateway;
 
-import com.hklk.website.entity.table.ItemContent;
-import com.hklk.website.entity.table.ItemDetail;
-import com.hklk.website.entity.table.OperatingUser;
+import com.hklk.website.controller.BaseController;
 import com.hklk.website.entity.table.UserFeedBack;
 import com.hklk.website.service.FeedBackService;
-import com.hklk.website.service.ItemDetailService;
-import com.hklk.website.service.ItemService;
-import com.hklk.website.service.UserLoginService;
-import com.hklk.website.service.impl.FeedBackServiceImpl;
-import com.hklk.website.util.*;
+import com.hklk.website.util.StatusCode;
+import com.hklk.website.util.ToolUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @RequestMapping("/feedBack")
 @Controller
-public class FeedBackController{
+public class FeedBackController extends BaseController {
 
     @Autowired
     FeedBackService feedBackService;

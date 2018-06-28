@@ -29,7 +29,6 @@ public class SessionValidateFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         OperatingUser user = (OperatingUser) request.getSession().getAttribute("user");
 
-
         if (user == null) {
             HttpServletResponse response = (HttpServletResponse) res;
             if (ServerInfo.isAjax(request) || request.getParameter("ajax") != null) {
@@ -41,14 +40,6 @@ public class SessionValidateFilter implements Filter {
             }
             return;
         }
-       /* else {
-            HttpServletResponse response = (HttpServletResponse) res;
-            PrintWriter out = response.getWriter();
-            String json = ToolUtil.buildDWZResultStr(StatusCode.OVER_TIME, StatusCode.getStatusMsg(StatusCode.OVER_TIME), "", "", "", "", "");
-            out.print(json);
-            return;
-        }*/
-
         log.debug("validate authentication finished, the authentication has permission to enter this uri.");
         chain.doFilter(req, res);
     }

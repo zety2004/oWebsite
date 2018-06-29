@@ -305,8 +305,8 @@
                         <!--<exclude>application.properties</exclude>
                         <exclude>applicationContext_*.xml</exclude>
                         <exclude>generatorConfig.xml</exclude>
-                        <exclude>logback.xml</exclude>
-                        <exclude>sqlmap/*</exclude>-->
+                        <exclude>logback.xml</exclude>-->
+                        <exclude>sqlmap/*</exclude>
                 </excludes>
             </resource>
         </resources>

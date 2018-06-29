@@ -1,17 +1,37 @@
 package com.hklk.website.entity.vo;
 
-import org.apache.poi.ss.formula.functions.T;
+import com.github.pagehelper.Page;
 
 import java.util.List;
 
-public class PageTableForm {
+public class PageTableForm<T> {
     private int currentPage;
-    private int pageSize;
+    private int numPerPage;
     private int beginIndex;
     private int endIndex;
-    private int pageCount;
-    private int totleCount;
+    private long pageCount;
+    private long totalCount;
     private List<T> objList;
+
+    public PageTableForm(Page<T> page) {
+        this.currentPage = page.getPageNum();
+        this.numPerPage = page.getPageSize();
+        this.beginIndex = page.getStartRow();
+        this.endIndex = page.getEndRow();
+        this.pageCount = page.getPages();
+        this.totalCount = page.getTotal();
+        this.objList = page.getResult();
+    }
+
+    public PageTableForm(Page<T> page, List<T> list) {
+        this.currentPage = page.getPageNum();
+        this.numPerPage = page.getPageSize();
+        this.beginIndex = page.getStartRow();
+        this.endIndex = page.getEndRow();
+        this.pageCount = page.getPages();
+        this.totalCount = page.getTotal();
+        this.objList = list;
+    }
 
     public int getCurrentPage() {
         return currentPage;
@@ -21,12 +41,12 @@ public class PageTableForm {
         this.currentPage = currentPage;
     }
 
-    public int getPageSize() {
-        return pageSize;
+    public int getNumPerPage() {
+        return numPerPage;
     }
 
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
+    public void setNumPerPage(int numPerPage) {
+        this.numPerPage = numPerPage;
     }
 
     public int getBeginIndex() {
@@ -45,20 +65,20 @@ public class PageTableForm {
         this.endIndex = endIndex;
     }
 
-    public int getPageCount() {
+    public long getPageCount() {
         return pageCount;
     }
 
-    public void setPageCount(int pageCount) {
+    public void setPageCount(long pageCount) {
         this.pageCount = pageCount;
     }
 
-    public int getTotleCount() {
-        return totleCount;
+    public long getTotalCount() {
+        return totalCount;
     }
 
-    public void setTotleCount(int totleCount) {
-        this.totleCount = totleCount;
+    public void setTotalCount(long totalCount) {
+        this.totalCount = totalCount;
     }
 
     public List<T> getObjList() {

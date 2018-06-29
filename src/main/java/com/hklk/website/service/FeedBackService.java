@@ -1,12 +1,10 @@
 package com.hklk.website.service;
 
-import com.hklk.website.entity.table.ItemContent;
 import com.hklk.website.entity.table.UserFeedBack;
-
-import java.util.List;
+import com.hklk.website.entity.vo.PageTableForm;
 
 public interface FeedBackService {
-    List<UserFeedBack> queryList() ;
+    PageTableForm<UserFeedBack> queryList(Integer pageNum,Integer pageSize) ;
     int deleteByPrimaryKey(Integer id);
     int insertSelective(UserFeedBack userFeedBack);
     int updateByPrimaryKeySelective(UserFeedBack userFeedBack);

@@ -1,11 +1,12 @@
 package com.hklk.website.service;
 
 import com.hklk.website.entity.table.ItemDetail;
+import com.hklk.website.entity.vo.PageTableForm;
 
 import java.util.List;
 
 public interface ItemDetailService {
-    List<ItemDetail> queryItemDetailList(Integer itemId);
+    PageTableForm<ItemDetail> queryItemDetailList(Integer itemId, Integer pageNum, Integer numPerPage);
     ItemDetail selectItemDetailById(Integer id);
     int updateByPrimaryKeySelective(ItemDetail record);
     int insertSelective(ItemDetail record);

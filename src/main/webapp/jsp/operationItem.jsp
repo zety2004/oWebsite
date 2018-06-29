@@ -43,7 +43,8 @@
 <div class="pageContent">
     <div class="panelBar">
         <ul class="toolBar">
-            <li><a class="add" href="/homePage/queryItemById?method=add" rel="addItem" target="dialog"><span>添加</span></a></li>
+            <li><a class="add" href="/homePage/queryItemById?method=add" rel="addItem"
+                   target="dialog"><span>添加</span></a></li>
             <li><a class="delete" href="/homePage/deleteItem?id={sid_user}" target="ajaxTodo"
                    title="确定要删除吗?"><span>删除</span></a></li>
             <li><a class="edit" href="/homePage/queryItemById?method=update&id={sid_user}" rel="updataItem"
@@ -63,7 +64,7 @@
         </tr>
         </thead>
         <tbody id="itemData">
-        <c:forEach items="${list}" var="obj" varStatus="temp">
+        <c:forEach items="${page.objList}" var="obj" varStatus="temp">
             <tr target="sid_user" rel="${obj.id}">
                 <td>${temp.index+1}</td>
                 <td>${obj.itemName}</td>
@@ -77,16 +78,13 @@
         <div class="pages">
             <span>显示</span>
             <select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
-                <option value="20">20</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-                <option value="150">150</option>
-                <option value="200">200</option>
-                <option value="250">250</option>
+                <c:forEach begin="20" end="100" step="20" varStatus="s">
+                    <option value="${s.index}" ${page.numPerPage eq s.index ? 'selected="selected"' : ''}>${s.index}</option>
+                </c:forEach>
             </select>
-            <span>条，共${totalCount}条</span>
+            <span>条，共${page.totalCount}条</span>
         </div>
-        <div class="pagination" targetType="navTab" totalCount="200" numPerPage="20" pageNumShown="10"
-             currentPage="1"></div>
+        <div class="pagination" targetType="navTab" totalCount="${page.totalCount}" numPerPage="${page.numPerPage}"
+             pageNumShown="${page.pageCount}" currentPage="${page.currentPage}"></div>
     </div>
 </div>

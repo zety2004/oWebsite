@@ -30,9 +30,7 @@ public class serviceTest extends AbstractTestCase {
 
     @Test
     public void queryItem() {
-        Page page =PageHelper.startPage(1,10);
-        List<ItemContent> temp = itemService.queryItemList();
+        List<ItemContent> temp = itemService.queryItemList(1, 10).getObjList();
         System.out.println(temp);
-        System.out.println(page);
     }
 }

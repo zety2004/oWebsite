@@ -32,10 +32,6 @@ public class LoginInterceptor implements HandlerInterceptor {
     //Action之前执行:
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        if (request.getRequestURI().equals("/")) {
-            System.out.println("--------------------------------------------------------------------------------------------------------------");
-        }
-        System.out.println(request.getRequestURL() + "--------------------------------------------------------------------------------------------------------------");
         // 如果不是映射到方法直接通过
         if (!(handler instanceof HandlerMethod)) {
             return true;

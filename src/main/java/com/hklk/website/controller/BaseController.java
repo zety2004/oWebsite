@@ -25,6 +25,14 @@ public abstract class BaseController {
         binder.registerCustomEditor(Date.class, new DateEditor());
     }
 
+    public int getPageNum(Integer pageNum) {
+        return pageNum == null ? 1 : pageNum;
+    }
+
+    public int getPageSize(Integer pageSize) {
+        return pageSize == null ? 20 : pageSize;
+    }
+
     @ExceptionHandler(Exception.class)
     public String exception(Exception e, HttpServletRequest request) {
         e.printStackTrace();

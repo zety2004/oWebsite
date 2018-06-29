@@ -38,9 +38,9 @@ public class queryItemController extends BaseController {
         try {
             List<ItemVo> result = new ArrayList<>();
             Map<Integer, ItemVo> result2 = new HashMap<>();
-            List<ItemContent> itemContents = itemService.queryItemList();
+            List<ItemContent> itemContents = itemService.queryItemList(pageNum, pageSize).getObjList();
             for (ItemContent itemContent : itemContents) {
-                List<ItemDetail> itemDetails = itemDetailService.queryItemDetailList(itemContent.getId());
+                List<ItemDetail> itemDetails = itemDetailService.queryItemDetailList(itemContent.getId(), pageNum, pageSize).getObjList();
                 result2.put(itemContent.getId(), new ItemVo(itemContent, itemDetails));
                 //result.add(new ItemVo(itemContent,itemDetails));
             }
@@ -58,7 +58,7 @@ public class queryItemController extends BaseController {
     String queryItemDetailByItemId(@RequestBody String paramters, HttpServletRequest request,
                                    HttpServletResponse response, HttpSession session) {
         try {
-            List<ItemDetail> itemDetails = itemDetailService.queryItemDetailList(StringUtil.paresInt(request.getParameter("itemId")));
+            List<ItemDetail> itemDetails = itemDetailService.queryItemDetailList(StringUtil.paresInt(request.getParameter("itemId")),pageNum,pageSize).getObjList();
             response.setHeader("Access-Control-Allow-Origin", "*");
             return ToolUtil.buildResultStr(StatusCode.SUCCESS, StatusCode.getStatusMsg(StatusCode.SUCCESS), itemDetails);
         } catch (Exception e) {

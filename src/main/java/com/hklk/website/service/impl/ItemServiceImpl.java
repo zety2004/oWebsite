@@ -1,7 +1,10 @@
 package com.hklk.website.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.hklk.website.dao.inter.ItemContentMapper;
 import com.hklk.website.entity.table.ItemContent;
+import com.hklk.website.entity.vo.PageTableForm;
 import com.hklk.website.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +19,11 @@ public class ItemServiceImpl implements ItemService {
     ItemContentMapper itemContentMapper;
 
     @Override
-    public List<ItemContent> queryItemList() {
-        return itemContentMapper.queryItems();
+    public PageTableForm<ItemContent> queryItemList(Integer pageNum, Integer pageSize) {
+        Page page = PageHelper.startPage(pageNum, pageSize, true);
+        itemContentMapper.queryItems();
+        PageTableForm<ItemContent> pageTableForm = new PageTableForm<>(page);
+        return pageTableForm;
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.hklk.website.controller.BaseController;
 import com.hklk.website.entity.table.ItemContent;
 import com.hklk.website.entity.table.ItemDetail;
 import com.hklk.website.entity.table.UserFeedBack;
+import com.hklk.website.entity.vo.PageTableForm;
 import com.hklk.website.filter.repo.LoginRepository;
 import com.hklk.website.service.FeedBackService;
 import com.hklk.website.service.ItemDetailService;
@@ -36,18 +37,18 @@ public class HomePageController extends BaseController {
     FeedBackService feedBackService;
 
     @RequestMapping("/queryItem")
-    public String queryItem(HttpServletRequest request,
+    public String queryItem(Integer pageNum, Integer numPerPage, HttpServletRequest request,
                             HttpServletResponse response, HttpSession session, Model model) {
-        List<ItemContent> result = itemService.queryItemList();
-        model.addAttribute("list", result);
+        PageTableForm<ItemContent> result = itemService.queryItemList(getPageNum(pageNum), getPageSize(numPerPage));
+        model.addAttribute("page", result);
         return "/jsp/operationItem";
     }
 
     @RequestMapping("/queryItemDetail")
-    public String queryItemDetail(HttpServletRequest request,
+    public String queryItemDetail(Integer id, Integer pageNum, Integer numPerPage, HttpServletRequest request,
                                   HttpServletResponse response, HttpSession session, Model model) {
-        List<ItemDetail> itemDetails = itemDetailService.queryItemDetailList(StringUtil.paresInt(request.getParameter("id")));
-        model.addAttribute("list", itemDetails);
+        PageTableForm<ItemDetail> itemDetails = itemDetailService.queryItemDetailList(id, getPageNum(pageNum), getPageSize(pageSize));
+        model.addAttribute("page", itemDetails);
         model.addAttribute("itemId", request.getParameter("id"));
         return "/jsp/operationItemDetail";
     }
@@ -170,10 +171,10 @@ public class HomePageController extends BaseController {
     }
 
     @RequestMapping("/queryFeedBack")
-    public String queryFeedBack(HttpServletRequest request,
+    public String queryFeedBack(Integer pageNum, Integer numPerPage, HttpServletRequest request,
                                 HttpServletResponse response, HttpSession session, Model model) {
-        List<UserFeedBack> userFeedBackList = feedBackService.queryList();
-        model.addAttribute("list", userFeedBackList);
+        PageTableForm<UserFeedBack> userFeedBackList = feedBackService.queryList(getPageNum(pageNum), getPageSize(numPerPage));
+        model.addAttribute("page", userFeedBackList);
         return "/jsp/userFeed";
     }
 }

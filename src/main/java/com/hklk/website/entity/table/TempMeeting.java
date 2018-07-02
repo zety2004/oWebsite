@@ -1,6 +1,9 @@
 package com.hklk.website.entity.table;
 
+import com.hklk.website.util.JsonUtil;
+
 import java.io.Serializable;
+import java.util.Date;
 
 public class TempMeeting implements Serializable {
     private Integer id;
@@ -13,7 +16,23 @@ public class TempMeeting implements Serializable {
 
     private String chooseType;
 
-    private String uniqueNum;
+    private Date createTime;
+
+    private String personOne;
+
+    private String personTwo;
+
+    private String personThree;
+
+    private String personFour;
+
+    private String phoneOne;
+
+    private String phoneTwo;
+
+    private String phoneThree;
+
+    private String phoneFour;
 
     private static final long serialVersionUID = 1L;
 
@@ -57,11 +76,79 @@ public class TempMeeting implements Serializable {
         this.chooseType = chooseType == null ? null : chooseType.trim();
     }
 
-    public String getUniqueNum() {
-        return uniqueNum;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setUniqueNum(String uniqueNum) {
-        this.uniqueNum = uniqueNum;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getPersonOne() {
+        return personOne;
+    }
+
+    public void setPersonOne(String personOne) {
+        this.personOne = personOne == null ? null : personOne.trim();
+    }
+
+    public String getPersonTwo() {
+        return personTwo;
+    }
+
+    public void setPersonTwo(String personTwo) {
+        this.personTwo = personTwo == null ? null : personTwo.trim();
+    }
+
+    public String getPersonThree() {
+        return personThree;
+    }
+
+    public void setPersonThree(String personThree) {
+        this.personThree = personThree == null ? null : personThree.trim();
+    }
+
+    public String getPersonFour() {
+        return personFour;
+    }
+
+    public void setPersonFour(String personFour) {
+        this.personFour = personFour == null ? null : personFour.trim();
+    }
+
+    public String getPhoneOne() {
+        return phoneOne;
+    }
+
+    public void setPhoneOne(String phoneOne) {
+        this.phoneOne = phoneOne == null ? null : phoneOne.trim();
+    }
+
+    public String getPhoneTwo() {
+        return phoneTwo;
+    }
+
+    public void setPhoneTwo(String phoneTwo) {
+        this.phoneTwo = phoneTwo == null ? null : phoneTwo.trim();
+    }
+
+    public String getPhoneThree() {
+        return phoneThree;
+    }
+
+    public void setPhoneThree(String phoneThree) {
+        this.phoneThree = phoneThree == null ? null : phoneThree.trim();
+    }
+
+    public String getPhoneFour() {
+        return phoneFour;
+    }
+
+    public void setPhoneFour(String phoneFour) {
+        this.phoneFour = phoneFour == null ? null : phoneFour.trim();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(JsonUtil.toJson(new TempMeeting()));
     }
 }

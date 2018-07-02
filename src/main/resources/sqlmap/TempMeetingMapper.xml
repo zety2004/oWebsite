@@ -7,10 +7,20 @@
         <result column="principal_name" property="principalName" jdbcType="VARCHAR"/>
         <result column="principal_phone" property="principalPhone" jdbcType="VARCHAR"/>
         <result column="choose_type" property="chooseType" jdbcType="VARCHAR"/>
-        <result column="unique_num" property="uniqueNum" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="person_one" property="personOne" jdbcType="VARCHAR"/>
+        <result column="person_two" property="personTwo" jdbcType="VARCHAR"/>
+        <result column="person_three" property="personThree" jdbcType="VARCHAR"/>
+        <result column="person_four" property="personFour" jdbcType="VARCHAR"/>
+        <result column="phone_one" property="phoneOne" jdbcType="VARCHAR"/>
+        <result column="phone_two" property="phoneTwo" jdbcType="VARCHAR"/>
+        <result column="phone_three" property="phoneThree" jdbcType="VARCHAR"/>
+        <result column="phone_four" property="phoneFour" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, school_name, principal_name, principal_phone, choose_type
+    id, school_name, principal_name, principal_phone, choose_type, create_time,
+    person_one, person_two, person_three, person_four, phone_one, phone_two, phone_three, 
+    phone_four
   </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
@@ -24,9 +34,17 @@
   </delete>
     <insert id="insert" parameterType="com.hklk.website.entity.table.TempMeeting">
     insert into hklk_temp_meeting (id, school_name, principal_name, 
-      principal_phone, choose_type,unique_num)
+      principal_phone, choose_type,
+      create_time, person_one, person_two, 
+      person_three, person_four, phone_one, 
+      phone_two, phone_three, phone_four
+      )
     values (#{id,jdbcType=INTEGER}, #{schoolName,jdbcType=VARCHAR}, #{principalName,jdbcType=VARCHAR}, 
-      #{principalPhone,jdbcType=VARCHAR}, #{chooseType,jdbcType=VARCHAR}, #{uniqueNum,jdbcType=VARCHAR})
+      #{principalPhone,jdbcType=VARCHAR}, #{chooseType,jdbcType=VARCHAR},
+      #{createTime,jdbcType=TIMESTAMP}, #{personOne,jdbcType=VARCHAR}, #{personTwo,jdbcType=VARCHAR}, 
+      #{personThree,jdbcType=VARCHAR}, #{personFour,jdbcType=VARCHAR}, #{phoneOne,jdbcType=VARCHAR}, 
+      #{phoneTwo,jdbcType=VARCHAR}, #{phoneThree,jdbcType=VARCHAR}, #{phoneFour,jdbcType=VARCHAR}
+      )
   </insert>
     <insert id="insertSelective" parameterType="com.hklk.website.entity.table.TempMeeting">
         insert into hklk_temp_meeting
@@ -46,8 +64,32 @@
             <if test="chooseType != null">
                 choose_type,
             </if>
-            <if test="uniqueNum != null">
-                unique_num,
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="personOne != null">
+                person_one,
+            </if>
+            <if test="personTwo != null">
+                person_two,
+            </if>
+            <if test="personThree != null">
+                person_three,
+            </if>
+            <if test="personFour != null">
+                person_four,
+            </if>
+            <if test="phoneOne != null">
+                phone_one,
+            </if>
+            <if test="phoneTwo != null">
+                phone_two,
+            </if>
+            <if test="phoneThree != null">
+                phone_three,
+            </if>
+            <if test="phoneFour != null">
+                phone_four,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -66,15 +108,95 @@
             <if test="chooseType != null">
                 #{chooseType,jdbcType=VARCHAR},
             </if>
-            <if test="uniqueNum != null">
-                #{uniqueNum,jdbcType=VARCHAR},
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="personOne != null">
+                #{personOne,jdbcType=VARCHAR},
+            </if>
+            <if test="personTwo != null">
+                #{personTwo,jdbcType=VARCHAR},
+            </if>
+            <if test="personThree != null">
+                #{personThree,jdbcType=VARCHAR},
+            </if>
+            <if test="personFour != null">
+                #{personFour,jdbcType=VARCHAR},
+            </if>
+            <if test="phoneOne != null">
+                #{phoneOne,jdbcType=VARCHAR},
+            </if>
+            <if test="phoneTwo != null">
+                #{phoneTwo,jdbcType=VARCHAR},
+            </if>
+            <if test="phoneThree != null">
+                #{phoneThree,jdbcType=VARCHAR},
+            </if>
+            <if test="phoneFour != null">
+                #{phoneFour,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
-    <select id="selectMeetingByUniqueNum" resultMap="BaseResultMap" parameterType="java.lang.String">
-        select
-        <include refid="Base_Column_List"/>
-        from hklk_temp_meeting
-        where unique_num = #{uniqueNum,jdbcType=VARCHAR}
-    </select>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hklk.website.entity.table.TempMeeting">
+        update hklk_temp_meeting
+        <set>
+            <if test="schoolName != null">
+                school_name = #{schoolName,jdbcType=VARCHAR},
+            </if>
+            <if test="principalName != null">
+                principal_name = #{principalName,jdbcType=VARCHAR},
+            </if>
+            <if test="principalPhone != null">
+                principal_phone = #{principalPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="chooseType != null">
+                choose_type = #{chooseType,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="personOne != null">
+                person_one = #{personOne,jdbcType=VARCHAR},
+            </if>
+            <if test="personTwo != null">
+                person_two = #{personTwo,jdbcType=VARCHAR},
+            </if>
+            <if test="personThree != null">
+                person_three = #{personThree,jdbcType=VARCHAR},
+            </if>
+            <if test="personFour != null">
+                person_four = #{personFour,jdbcType=VARCHAR},
+            </if>
+            <if test="phoneOne != null">
+                phone_one = #{phoneOne,jdbcType=VARCHAR},
+            </if>
+            <if test="phoneTwo != null">
+                phone_two = #{phoneTwo,jdbcType=VARCHAR},
+            </if>
+            <if test="phoneThree != null">
+                phone_three = #{phoneThree,jdbcType=VARCHAR},
+            </if>
+            <if test="phoneFour != null">
+                phone_four = #{phoneFour,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hklk.website.entity.table.TempMeeting">
+    update hklk_temp_meeting
+    set school_name = #{schoolName,jdbcType=VARCHAR},
+      principal_name = #{principalName,jdbcType=VARCHAR},
+      principal_phone = #{principalPhone,jdbcType=VARCHAR},
+      choose_type = #{chooseType,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      person_one = #{personOne,jdbcType=VARCHAR},
+      person_two = #{personTwo,jdbcType=VARCHAR},
+      person_three = #{personThree,jdbcType=VARCHAR},
+      person_four = #{personFour,jdbcType=VARCHAR},
+      phone_one = #{phoneOne,jdbcType=VARCHAR},
+      phone_two = #{phoneTwo,jdbcType=VARCHAR},
+      phone_three = #{phoneThree,jdbcType=VARCHAR},
+      phone_four = #{phoneFour,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

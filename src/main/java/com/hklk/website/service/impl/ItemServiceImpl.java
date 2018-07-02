@@ -22,9 +22,7 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public PageTableForm<ItemContent> queryItemList(Integer pageNum, Integer pageSize) {
         Page page = PageHelper.startPage(pageNum, pageSize, true);
-        System.out.println("page before" + JsonUtil.toJson(page));
         itemContentMapper.queryItems();
-        System.out.println("page after" + JsonUtil.toJson(page));
         PageTableForm<ItemContent> pageTableForm = new PageTableForm<>(page);
         return pageTableForm;
     }

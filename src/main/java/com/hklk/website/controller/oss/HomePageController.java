@@ -40,7 +40,6 @@ public class HomePageController extends BaseController {
     public String queryItem(Integer pageNum, Integer numPerPage, HttpServletRequest request,
                             HttpServletResponse response, HttpSession session, Model model) {
         PageTableForm<ItemContent> result = itemService.queryItemList(getPageNum(pageNum), getPageSize(numPerPage));
-        System.out.println(JsonUtil.toJson(result));
         model.addAttribute("page", result);
         return "/jsp/operationItem";
     }

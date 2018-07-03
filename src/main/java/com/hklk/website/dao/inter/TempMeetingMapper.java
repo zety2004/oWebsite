@@ -14,4 +14,6 @@ public interface TempMeetingMapper {
     int updateByPrimaryKeySelective(TempMeeting record);
 
     int updateByPrimaryKey(TempMeeting record);
+
+    TempMeeting selectByUuid(String uuid);
 }

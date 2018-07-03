@@ -1,8 +1,5 @@
 package com.hklk.website.entity.table;
 
-import com.hklk.website.util.JsonUtil;
-import com.hklk.website.util.ToolUtil;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -118,5 +115,6 @@ public class TempMeeting implements Serializable {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
 
 }

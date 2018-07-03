@@ -161,4 +161,11 @@
       remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByUuid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from hklk_temp_meeting
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </select>
 </mapper>

@@ -22,4 +22,8 @@ public class TempMeetingServiceImpl implements TempMeetingService {
         return 1;
     }
 
+    @Override
+    public TempMeeting selectByUuid(String uuid) {
+        return tempMeetingMapper.selectByUuid(uuid);
+    }
 }

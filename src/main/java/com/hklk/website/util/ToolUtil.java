@@ -110,6 +110,11 @@ public final class ToolUtil {
 
     }
 
+    public static String createUUIDId() {
+        UUID uuid = UUID.randomUUID();
+        return uuid.toString().replaceAll("-", "");
+    }
+
     
     /**
      * 格式化double类型数据 *.00

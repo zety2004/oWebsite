@@ -20,6 +20,7 @@ public class MeetingController extends BaseController {
 
     @Autowired
     TempMeetingService tempMeetingService;
+
     @ResponseBody
     @RequestMapping("/addRecord")
     public String addRecord(TempMeeting params, HttpServletRequest request,
@@ -29,14 +30,14 @@ public class MeetingController extends BaseController {
             if (params == null) {
                 ToolUtil.buildResultStr(StatusCode.PARAMTER_ERROR, StatusCode.getStatusMsg(StatusCode.PARAMTER_ERROR));
             }
+            String uuid = ToolUtil.createId(10);
+            params.setUuid(uuid);
             tempMeetingService.insertTempMeeting(params);
-            return ToolUtil.buildResultStr(StatusCode.SUCCESS, StatusCode.getStatusMsg(StatusCode.SUCCESS));
+            return ToolUtil.buildResultStr(StatusCode.SUCCESS, StatusCode.getStatusMsg(StatusCode.SUCCESS), uuid);
         } catch (Exception e) {
             e.printStackTrace();
             return ToolUtil.buildResultStr(StatusCode.SYS_ERROR, StatusCode.getStatusMsg(StatusCode.SYS_ERROR),
                     new Object());
         }
     }
-
-
 }

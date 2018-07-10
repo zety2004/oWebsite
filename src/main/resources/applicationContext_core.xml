@@ -98,6 +98,7 @@
 			<tx:method name="up*" propagation="REQUIRED" />
 			<tx:method name="grant*" propagation="REQUIRED" />
 			<tx:method name="insert*" propagation="REQUIRED"/>
+			<tx:method name="call*" propagation="REQUIRED"/>
 			<tx:method name="*" propagation="REQUIRED" read-only="true" />
 		</tx:attributes>
 	</tx:advice>

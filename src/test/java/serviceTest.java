@@ -40,6 +40,7 @@ public class serviceTest extends AbstractTestCase {
 
     @Test
     public void queryMeeting() {
-        System.out.println(JsonUtil.toJson(tempMeetingService.queryMeeting()));
+        List<Map<String,Object>> result = tempMeetingService.callMeeting();
+        System.out.println(JsonUtil.toJson(result));
     }
 }

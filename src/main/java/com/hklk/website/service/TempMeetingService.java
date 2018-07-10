@@ -10,5 +10,7 @@ public interface TempMeetingService {
 
     TempMeeting selectByUuid(String uuid);
 
-    List<Map<String, Object>> queryMeeting();
+    List<Map<String, Object>> callMeeting();
+
+    List<Map<String, Object>> callMeetingDis();
 }

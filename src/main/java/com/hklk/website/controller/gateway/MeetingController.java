@@ -1,14 +1,11 @@
 package com.hklk.website.controller.gateway;
 
-import com.google.common.cache.CacheBuilder;
-import com.google.common.cache.LoadingCache;
 import com.hklk.website.controller.BaseController;
 import com.hklk.website.entity.table.TempMeeting;
 import com.hklk.website.service.TempMeetingService;
 import com.hklk.website.util.ExcelUtils;
 import com.hklk.website.util.StatusCode;
 import com.hklk.website.util.ToolUtil;
-import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -63,17 +60,35 @@ public class MeetingController extends BaseController {
         }
     }
 
-    @RequestMapping("/exportExcelForStudent")
+    @RequestMapping("/exportExcelForMeeting")
     @ResponseBody
     public String exportExcelForMeeting(HttpServletRequest request,
                                         HttpServletResponse response, HttpSession session) {
-        String[] columnHeader = {"sNum", "fullName", "sex", "parentName", "parentPhone"};
         String[] fieldNames = {"序号", "申报码", "申报人姓名", "申报人联系方式", "申报人所在学校","直属领导姓名","直属领导电话","直属领导职务","共同体一","共同体一","共同体二","共同体三","共同体四","备注"};
-        List<Map<String, Object>> result = tempMeetingService.queryMeeting();
+        List<Map<String,Object>> result = tempMeetingService.callMeeting();
         try {
-            System.out.println("teacher export ----------------------");
             ServletOutputStream out = response.getOutputStream();
             response.setHeader("Content-disposition", "attachment; filename=data.xlsx");
+            response.setContentType("application/msexcel");
+            ExcelUtils.exportExcel(out, "xlsx", result, fieldNames, fieldNames);
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return ToolUtil.buildResultStr(StatusCode.SUCCESS, StatusCode.getStatusMsg(StatusCode.SUCCESS));
+    }
+
+    @RequestMapping("/exportExcelForMeetingDis")
+    @ResponseBody
+    public String exportExcelForMeetingDis(HttpServletRequest request,
+                                        HttpServletResponse response, HttpSession session) {
+        //String[] columnHeader = {"sNum", "fullName", "sex", "parentName", "parentPhone"};
+        String[] fieldNames = {"序号", "申报码", "申报人姓名", "申报人联系方式", "申报人所在学校","直属领导姓名","直属领导电话","直属领导职务","共同体一","共同体一","共同体二","共同体三","共同体四","备注"};
+        List<Map<String,Object>> result = tempMeetingService.callMeetingDis();
+        try {
+            ServletOutputStream out = response.getOutputStream();
+            response.setHeader("Content-disposition", "attachment; filename=data_dis.xlsx");
             response.setContentType("application/msexcel");
             ExcelUtils.exportExcel(out, "xlsx", result, fieldNames, fieldNames);
             out.flush();

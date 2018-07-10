@@ -31,7 +31,12 @@ public class TempMeetingServiceImpl implements TempMeetingService {
     }
 
     @Override
-    public List<Map<String, Object>> queryMeeting() {
-        return tempMeetingMapper.queryMeeting();
+    public List<Map<String, Object>> callMeeting() {
+        return tempMeetingMapper.callMeeting();
+    }
+
+    @Override
+    public List<Map<String, Object>> callMeetingDis() {
+        return tempMeetingMapper.callMeetingDis();
     }
 }

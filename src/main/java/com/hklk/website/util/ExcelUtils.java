@@ -434,7 +434,7 @@ public class ExcelUtils {
             Row row = sheet.createRow(rowIndex);
             row.setHeight((short) 600);
             for (int i = 0; i < columnHeaders.length; i++) {
-                sheet.setColumnWidth(i, 7500);
+                sheet.setColumnWidth(i, 5000);
                 Cell cell = row.createCell(i);
                 CellStyle style = workbook.createCellStyle();
                 buildCssForCell(style);

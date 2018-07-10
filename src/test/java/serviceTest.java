@@ -3,7 +3,9 @@ import com.github.pagehelper.PageHelper;
 import com.hklk.website.entity.table.ItemContent;
 import com.hklk.website.entity.table.OperatingUser;
 import com.hklk.website.service.ItemService;
+import com.hklk.website.service.TempMeetingService;
 import com.hklk.website.service.UserLoginService;
+import com.hklk.website.util.JsonUtil;
 import comm.AbstractTestCase;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ public class serviceTest extends AbstractTestCase {
     UserLoginService userLoginService;
     @Autowired
     ItemService itemService;
+    @Autowired
+    TempMeetingService tempMeetingService;
 
     @Test
     public void loginTest() {
@@ -32,5 +36,10 @@ public class serviceTest extends AbstractTestCase {
     public void queryItem() {
         List<ItemContent> temp = itemService.queryItemList(1, 10).getObjList();
         System.out.println(temp);
+    }
+
+    @Test
+    public void queryMeeting() {
+        System.out.println(JsonUtil.toJson(tempMeetingService.queryMeeting()));
     }
 }

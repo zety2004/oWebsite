@@ -168,4 +168,8 @@
     from hklk_temp_meeting
     where uuid = #{uuid,jdbcType=VARCHAR}
   </select>
+
+  <select id="queryMeeting" resultType="map">
+    call queryMeeting
+  </select>
 </mapper>
